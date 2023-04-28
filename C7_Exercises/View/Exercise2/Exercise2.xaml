@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C7_Exercises.View.Exercise2.Exercise2"
+             Title="Exercise2"
+             xmlns:local="clr-namespace:C7_Exercises.View.Exercise2">
+    <FlyoutPage.Flyout>
+        <local:FlyoutMenuItem_E2 x:Name="flyoutPageE2"/>
+    </FlyoutPage.Flyout>
+
+    <FlyoutPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <local:NewGroupsPage/>
+            </x:Arguments>
+        </NavigationPage>
+    </FlyoutPage.Detail>
+  
+</FlyoutPage>

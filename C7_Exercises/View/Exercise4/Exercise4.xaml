@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C7_Exercises.View.Exercise4.Exercise4"
+             Title="Your Activities"
+             xmlns:viewModel="clr-namespace:C7_Exercises.ViewModel"
+             xmlns:templateSelector="clr-namespace:C7_Exercises.Selector">
+    <ContentPage.BindingContext>
+        <viewModel:GetActivitiesViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <DataTemplate x:Key="dataTemplateCompleted">
+            <SwipeView>
+                <SwipeView.RightItems>
+                    <SwipeItems>
+                        <SwipeItem IconImageSource="deleteicon.png"
+                                   BackgroundColor="Red"
+                                   Text="Delete"
+                                   CommandParameter="{Binding}"
+                                   Command="{Binding Source={x:Reference collectionViewActivity},Path=BindingContext.DeleteActivity}"/>
+                        <SwipeItem IconImageSource="editicon.png"
+                                   BackgroundColor="Green"
+                                   Text="Edit"
+                                   CommandParameter="{Binding}"
+                                   Command="{Binding Source={x:Reference collectionViewActivity},Path=BindingContext.UpdateActivity}"/>
+
+                    </SwipeItems>
+                </SwipeView.RightItems>
+                <StackLayout >
+                    <Border Stroke="White"
+                            Background="White"
+                            StrokeShape="RoundRectangle 15">
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="10">
+                            <Border StrokeShape="RoundRectangle 10,0,10,0"
+                                    BackgroundColor="Green"
+                                    WidthRequest="15"
+                                    HeightRequest="80"
+                                    Stroke="Green"
+                                    HorizontalOptions="Start"/>
+
+                            <VerticalStackLayout HorizontalOptions="FillAndExpand"
+                                                 VerticalOptions="CenterAndExpand"
+                                                 Spacing="10">
+                                <Label x:Name="labelActivity"
+                                       Text="{Binding Title}"
+                                       FontSize="14"
+                                       FontAttributes="Bold"/>
+                                <HorizontalStackLayout Spacing="5">
+                                    <Image x:Name="imageTime"
+                                           Source="timepicker.png"
+                                           HeightRequest="15"
+                                           WidthRequest="15"/>
+                                    <Label x:Name="labelDueDate"
+                                           Text="{Binding DueDate, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                           FontSize="12"/>
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+
+
+
+                        </StackLayout>
+
+                    </Border>
+
+                </StackLayout>
+            </SwipeView>
+        </DataTemplate>
+        <DataTemplate x:Key="dataTemplateNotCompleted">
+            <SwipeView>
+                <SwipeView.RightItems>
+                    <SwipeItems>
+                        <SwipeItem IconImageSource="deleteicon.png"
+                                   BackgroundColor="Red"
+                                   Text="Delete"
+                                   CommandParameter="{Binding}"
+                                   Command="{Binding Source={x:Reference collectionViewActivity},Path=BindingContext.DeleteActivity}"/>
+                        <SwipeItem IconImageSource="editicon.png"
+                                   BackgroundColor="Green"
+                                   Text="Edit"
+                                   CommandParameter="{Binding}"
+                                   Command="{Binding Source={x:Reference collectionViewActivity},Path=BindingContext.UpdateActivity}"/>
+
+                    </SwipeItems>
+                </SwipeView.RightItems>
+                <StackLayout >
+                    <Border Stroke="White"
+                            Background="White"
+                            StrokeShape="RoundRectangle 15">
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="10">
+                            <Border StrokeShape="RoundRectangle 10,0,10,0"
+                                    BackgroundColor="Red"
+                                    WidthRequest="15"
+                                    HeightRequest="80"
+                                    Stroke="Red"
+                                    HorizontalOptions="Start"/>
+
+                            <VerticalStackLayout HorizontalOptions="FillAndExpand"
+                                                 VerticalOptions="CenterAndExpand"
+                                                 Spacing="10">
+                                <Label x:Name="labelActivity1"
+                                       Text="{Binding Title}"
+                                       FontSize="14"
+                                       FontAttributes="Bold"/>
+                                <HorizontalStackLayout Spacing="5">
+                                    <Image x:Name="imageTime1"
+                                           Source="timepicker.png"
+                                           HeightRequest="15"
+                                           WidthRequest="15"/>
+                                    <Label x:Name="labelDueDate1"
+                                           Text="{Binding DueDate, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                           FontSize="12"/>
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+
+
+
+                        </StackLayout>
+
+                    </Border>
+
+                </StackLayout>
+            </SwipeView>
+        </DataTemplate>
+        <templateSelector:CompletedSelector x:Key="ActivitySelector"
+                                            ActivityCompleted="{StaticResource dataTemplateCompleted}"
+                                            ActivityNotCompleted="{StaticResource dataTemplateNotCompleted}"/>
+    </ContentPage.Resources>
+
+
+        <Grid BackgroundColor="Gray"
+              Padding="10">
+
+       
+                <CollectionView Background="Gray"
+                            HorizontalOptions="FillAndExpand"
+                            x:Name="collectionViewActivity"
+                            ItemTemplate="{StaticResource ActivitySelector}"
+                            ItemsSource="{Binding ActivityTabels}"
+                            IsVisible="{Binding IsVisibleCollectionView}"
+                            EmptyView="No Activity Found">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                           ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
+
+            
+            <ActivityIndicator x:Name="activityIndicator"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}"/>
+            <ImageButton CornerRadius="25"
+                         Source="add.png"
+                         Padding="15"
+                         VerticalOptions="End"
+                         HorizontalOptions="End"
+                         BackgroundColor="#609EA0"
+                         x:Name="imageButton"
+                         Clicked="ImageButton_Clicked"/>
+        </Grid>
+
+</ContentPage>

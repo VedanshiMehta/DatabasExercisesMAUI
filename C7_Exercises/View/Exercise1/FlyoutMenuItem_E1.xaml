@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C7_Exercises.View.Exercise1.FlyoutMenuItem_E1"
+             Title="FlyoutMenuItem_E1"
+             xmlns:local="clr-namespace:C7_Exercises.View.Exercise1"
+             xmlns:model ="clr-namespace:C7_Exercises.Model">
+    <StackLayout>
+        <StackLayout HorizontalOptions="FillAndExpand"
+                     BackgroundColor="#609EA0"
+                     Padding="20"
+                     Spacing="5">
+            <Border StrokeShape="RoundRectangle 70"
+                    Stroke="White"
+                    Background="White"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="CenterAndExpand"
+                    StrokeThickness="5">
+                
+                <Image Source="woman" 
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       Aspect="AspectFill"/>
+            </Border>
+            <Label Text="Elon Musk"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontAttributes="Bold"/>
+            <Label Text="2.3M Followers"
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontAttributes="Bold"/>
+
+        </StackLayout>
+        <StackLayout Padding="10"
+                     BackgroundColor="White"
+                     VerticalOptions="FillAndExpand">
+        <CollectionView HorizontalOptions="FillAndExpand"
+                        BackgroundColor="White"
+                        x:Name="collectionView"
+                        x:FieldModifier="public"
+                        SelectionMode="Single"
+                        Margin="0,40,0,0">
+           <CollectionView.ItemsLayout>
+                 <LinearItemsLayout Orientation="Vertical"
+                                    ItemSpacing="15"/>
+           </CollectionView.ItemsLayout>
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type model:FlyoutPageItem}">
+                    
+                    <model:FlyoutPageItem Title="Profile"
+                                          IconSource="users"
+                                          TargetType="{x:Type local:ProfilePage}"/>
+                    <model:FlyoutPageItem Title="Message"
+                                          IconSource="message"
+                                          TargetType="{x:Type local:MessagePage}"/>
+                    <model:FlyoutPageItem Title="Activity"
+                                          IconSource="activity"
+                                          TargetType="{x:Type local:ActivityPage}"/>
+                    <model:FlyoutPageItem Title="List"
+                                          IconSource="list"
+                                          TargetType="{x:Type local:ListPage}"/>
+
+                </x:Array>
+                
+            </CollectionView.ItemsSource>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                  <StackLayout>
+                    <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Border.BackgroundColor"
+                                                TargetName="borderTitles"
+                                                Value="White"/>
+                                        <Setter Property="Label.TextColor"
+                                                TargetName="labelTitleName"
+                                                Value="Black"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="Border.BackgroundColor"
+                                                TargetName="borderTitles"
+                                                Value="#AED8E5"/>
+                                        <Setter Property="Label.TextColor"
+                                                TargetName="labelTitleName"
+                                                Value="White"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                            
+                    </VisualStateManager.VisualStateGroups>
+                    <Border Stroke="Gray"
+                            BackgroundColor="White"
+                            HorizontalOptions="FillAndExpand"
+                            StrokeShape="RoundRectangle 10"
+                            Padding="20,10,0,10"
+                            x:Name="borderTitles">
+                        <HorizontalStackLayout>
+                        
+                            <Image HeightRequest="20"
+                                   WidthRequest="20"
+                                   Source="{Binding IconSource}" />
+
+                            <Label Margin="20,5"
+                                   Text="{Binding Title}"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   x:Name="labelTitleName"/>
+                        </HorizontalStackLayout>
+                    </Border>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

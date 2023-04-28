@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C7_Exercises.View.Exercise4.UpdateActivity"
+             xmlns:viewModel="clr-namespace:C7_Exercises.ViewModel">
+    <ContentPage.BindingContext>
+        <viewModel:UpdateActivityViewModel/>
+    </ContentPage.BindingContext>
+    <NavigationPage.TitleView >
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="FillAndExpand">
+            <Label x:Name="labelUpdateAcivity"
+                   Text="Update Activity"
+                   VerticalOptions="CenterAndExpand"
+                   FontSize="18"
+                   TextColor="White"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ScrollView>
+        <StackLayout BackgroundColor="Gray"
+                     Padding="15">
+            <Border StrokeShape="RoundRectangle 15"
+                    BackgroundColor="White"
+                    Stroke="White"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Padding="20">
+                <StackLayout Spacing="10">
+                    <Entry x:Name="entryName"
+                           Placeholder="Name"
+                           HorizontalOptions="FillAndExpand"
+                           Keyboard="Text"
+                           Text="{Binding Title}"/>
+                    <DatePicker x:Name="expriyDate"
+                                Format="MM/dd/yyyy"
+                                MinimumDate="01/01/2023"
+                                MaximumDate="12/31/2023"
+                                Date="{Binding DueDate}"/>
+                    <HorizontalStackLayout HorizontalOptions="CenterAndExpand"
+                                           Spacing="5">
+                        <Label x:Name="labelCompleted"
+                               Text="Completed"
+                               FontSize="14"
+                               VerticalOptions="CenterAndExpand"
+                               />
+                        <Switch x:Name="switchCompleted"
+                                IsToggled="{Binding IsCompleted}"/>
+
+
+                    </HorizontalStackLayout>
+
+                    <Button x:Name="buttonUpdate"
+                            Text="Update"
+                            HorizontalOptions="FillAndExpand"
+                            Padding="10"
+                            CornerRadius="10"
+                            Command="{Binding UpdateActivityCommand}"/>
+                </StackLayout>
+
+            </Border>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

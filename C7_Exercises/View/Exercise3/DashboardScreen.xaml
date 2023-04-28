@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C7_Exercises.View.Exerecise3.DashboardScreen">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Home"
+                   VerticalOptions="Center"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="18"
+                   HorizontalTextAlignment="Center"
+                   Margin="20,0,0,0"/>
+            <Button Text="Logout"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="18"
+                    BackgroundColor="#2F2E33"
+                    Clicked="Button_Clicked"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ScrollView>
+        <StackLayout BackgroundColor="#2F2E33"
+                 Padding="25">
+            <StackLayout Orientation="Horizontal"
+                                     Spacing="10">
+                <Border StrokeShape="RoundRectangle 50"
+                        Stroke="White"
+                        StrokeThickness="5">
+                    <Image Source="woman"
+                       HeightRequest="80"
+                       WidthRequest="80"
+                       Aspect="AspectFill"
+                       HorizontalOptions="Start"
+                      />
+                </Border>
+
+                <VerticalStackLayout HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="CenterAndExpand">
+                    <HorizontalStackLayout HorizontalOptions="FillAndExpand"
+                                                       Spacing="5">
+                        <Label x:Name="labelFirstName"
+                                       Text="Howard"
+                                       FontSize="20"
+                               TextColor="White"
+                                       FontAttributes="Bold"/>
+                        <Label x:Name="labelLastName"
+                                       Text="Chen"
+                                       FontSize="20"
+                               TextColor="White"
+                                       FontAttributes="Bold"/>
+                    </HorizontalStackLayout>
+                    <Label Text="Welcome to the 88 ERP system,"
+                           FontSize="16"
+                           FontAttributes="Bold"/>
+                </VerticalStackLayout>
+
+
+            </StackLayout>
+
+            <Grid ColumnDefinitions="*,*"
+                      RowDefinitions="*,*"
+                      RowSpacing="15"
+                      ColumnSpacing="10"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand"
+                  Margin="0,20">
+                <Frame BackgroundColor="#39383E"
+                       BorderColor="#39383E"
+                       CornerRadius="20"
+                           Grid.Column="0"
+                           Grid.Row="0">
+                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 Spacing="20">
+                        
+                            <Image Source="notebook"
+                                            HeightRequest="80"
+                                            WidthRequest="80"
+                                            Aspect="AspectFill"
+                                            HorizontalOptions="Center"
+                                        />
+                        
+                        <Label x:Name="labelCustomer"
+                                    Text="Customer"
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BackgroundColor="#39383E"
+                       BorderColor="#39383E"
+                           Grid.Column="1"
+                           Grid.Row="0"
+                       CornerRadius="20">
+                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 Spacing="20">
+                        
+                            <Image Source="category"
+                                            HeightRequest="80"
+                                            WidthRequest="80"
+                                            Aspect="AspectFill"
+                                            HorizontalOptions="Center"
+                                        />
+                        
+                        <Label x:Name="labelProduct"
+                                    Text="Product"
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BackgroundColor="#39383E"
+                       BorderColor="#39383E"
+                           Grid.Column="0"
+                           Grid.Row="1"
+                       CornerRadius="20"
+                       >
+                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 Spacing="20">
+                       
+                            <Image Source="luggage"
+                                            HeightRequest="80"
+                                            WidthRequest="80"
+                                            Aspect="AspectFill"
+                                            HorizontalOptions="Center"
+                                        />
+                        
+                        <Label x:Name="labelIndividual"
+                                    Text="Individual"
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BackgroundColor="#39383E"
+                       BorderColor="#39383E"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                       CornerRadius="20">
+                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 Spacing="20">
+                        
+                            <Image Source="pennant"
+                                            HeightRequest="80"
+                                            WidthRequest="80"
+                                            Aspect="AspectFill"
+                                            HorizontalOptions="Center"
+                                        />
+                        
+                        <Label x:Name="labelGroup"
+                                    Text="Group"
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                
+            </Grid>
+            <Frame BackgroundColor="#39383E"
+                       BorderColor="#39383E"
+                       CornerRadius="20"
+                   VerticalOptions="End">
+                <StackLayout VerticalOptions="CenterAndExpand"
+                                 Orientation="Horizontal"
+                                 Spacing="5">
+
+                    <Image Source="notifications"
+                                            HeightRequest="20"
+                                            WidthRequest="20"
+                                            Aspect="AspectFill"
+                                            HorizontalOptions="Center"
+                                        />
+
+                    <Label x:Name="labelAudit"
+                                    Text="Order have been audited."
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                               HorizontalOptions="FillAndExpand"/>
+                    <Image Source="rightarrow"
+                                            HeightRequest="20"
+                                            WidthRequest="20"
+                                            Aspect="AspectFill"
+                                            HorizontalOptions="End"
+                                        />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

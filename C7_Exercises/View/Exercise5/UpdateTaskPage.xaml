@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C7_Exercises.View.Exercise5.UpdateTaskPage"
+             xmlns:viewModel="clr-namespace:C7_Exercises.ViewModel">
+    <ContentPage.BindingContext>
+        <viewModel:UpdateTaskViewModel/>
+    </ContentPage.BindingContext>
+    <NavigationPage.TitleView >
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="FillAndExpand">
+            <Label x:Name="labelAddTask"
+                   Text="Update Task"
+                   VerticalOptions="CenterAndExpand"
+                   FontSize="18"
+                   TextColor="White"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <StackLayout Padding="20"
+                 Spacing="5">
+        <Label 
+            Text="Task Name" 
+            HorizontalOptions="FillAndExpand"
+            TextColor="Black"
+            FontAttributes="Bold"
+            FontSize="16"
+            x:Name="labelTaskName"/>
+        <Border Stroke="Gray"
+                Padding="5"
+                StrokeShape="RoundRectangle 15">
+            <Entry HorizontalOptions="FillAndExpand"
+                   x:Name="entryTaskName"
+                   Text="{Binding TaskName}"/>
+
+        </Border>
+        <Label 
+            Text="Description" 
+            HorizontalOptions="FillAndExpand"
+            TextColor="Black"
+            FontAttributes="Bold"
+            FontSize="16"
+            Margin="0,10,0,0"
+            x:Name="labelDescription"/>
+        <Border Stroke="Gray"
+                Padding="5"
+                StrokeShape="RoundRectangle 15">
+            <Editor HorizontalOptions="FillAndExpand"
+                    AutoSize="TextChanges"
+                    x:Name="editorDescription"
+                    VerticalTextAlignment="Start"
+                    HeightRequest="100"
+                    Text="{Binding TaskDescription}"/>
+        </Border>
+        <Label 
+            Text="Completion Date" 
+            HorizontalOptions="FillAndExpand"
+            TextColor="Black"
+            FontAttributes="Bold"
+            FontSize="16"
+            Margin="0,10,0,0"
+            x:Name="labelCompletionDate"/>
+        <Border Stroke="Gray"
+                Padding="5"
+                StrokeShape="RoundRectangle 15">
+
+            <DatePicker x:Name="completionDate"
+                        Format="MM/dd/yyyy"
+                        MinimumDate="01/01/2023"
+                        MaximumDate="12/31/2023"
+                        Date="{Binding CompletionDate}"/>
+        </Border>
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="FillAndExpand"
+                     Spacing="15"
+                     Margin="0,10,0,0">
+            <VerticalStackLayout HorizontalOptions="FillAndExpand">
+
+                <Label Text="Start Time" 
+                       HorizontalOptions="FillAndExpand"
+                       HorizontalTextAlignment="Start"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="16"
+                       Margin="0,10,0,0"
+                        x:Name="labelStartTime"/>
+                <Border Stroke="Gray"
+                        Padding="5"
+                        StrokeShape="RoundRectangle 15">
+                    <TimePicker x:Name="startTime"
+                                Format="hh:mm tt"
+                                HorizontalOptions="FillAndExpand"
+                                Time="{Binding StartTime}"/>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout HorizontalOptions="FillAndExpand">
+
+                <Label Text="End Time" 
+                       HorizontalOptions="FillAndExpand"
+                       HorizontalTextAlignment="Start"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="16"
+                       Margin="0,10,0,0"
+                        x:Name="labelEndTime"/>
+                <Border Stroke="Gray"
+                        Padding="5"
+                        StrokeShape="RoundRectangle 15">
+                    <TimePicker x:Name="endTime"
+                                Format="hh:mm tt"
+                                HorizontalOptions="FillAndExpand"
+                                Time="{Binding EndTime}"/>
+                </Border>
+            </VerticalStackLayout>
+
+        </StackLayout>
+        <Button x:Name="buttonUpdateTask"
+                    Text="Update Task"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="EndAndExpand"
+                    BackgroundColor="#609EA0"
+                    Padding="10"
+                    CornerRadius="15"
+                Command="{Binding UpdateTaskCommand}"/>
+    </StackLayout>
+</ContentPage>
