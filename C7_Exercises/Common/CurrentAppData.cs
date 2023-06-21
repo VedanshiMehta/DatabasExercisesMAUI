@@ -10,5 +10,6 @@ namespace C7_Exercises
     {
         
         public static bool IsUserLoggedIn { get; set; }
+        public static bool IsDataInserted { get; set; }
     }
 }

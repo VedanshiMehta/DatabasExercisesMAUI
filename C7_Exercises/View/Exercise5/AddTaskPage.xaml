@@ -52,6 +52,7 @@
                     Text="{Binding TaskDescription}"/>
         </Border>
         <Label 
+            
             Text="Completion Date" 
             HorizontalOptions="FillAndExpand"
             TextColor="Black"

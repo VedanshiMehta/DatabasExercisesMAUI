@@ -19,6 +19,7 @@ namespace C7_Exercises
                var resultUserTabel = await DatabaseConnection.GetDBConnection().CreateTableAsync<UserDetailTabel>();
                var resultAcitiviyTabel = await DatabaseConnection.GetDBConnection().CreateTableAsync<ActivityTabel>();
                var resultTaskTabel = await DatabaseConnection.GetDBConnection().CreateTableAsync<TaskTabel>();
+               var resultProductTabel = await DatabaseConnection.GetDBConnection().CreateTableAsync<ProductTable>();
             }
             catch (Exception ex)
             {
@@ -33,6 +34,25 @@ namespace C7_Exercises
                 try
                 {
                     var result = await DatabaseConnection.GetDBConnection().InsertAsync(t);
+                    if (result > 0)
+                        return true;
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error inserting data: " + ex.InnerException?.Message);
+                    return false;
+                }
+            }
+            return false;
+        }
+        public static async Task<bool> InsertAllData<T>(List<T> t)
+        {
+            if (t != null)
+            {
+                try
+                {
+                    var result = await DatabaseConnection.GetDBConnection().InsertAllAsync(t);
                     if (result > 0)
                         return true;
                     return false;
@@ -115,6 +135,19 @@ namespace C7_Exercises
             try
             {
                 return await DatabaseConnection.GetDBConnection().Table<TaskTabel>().ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.InnerException?.Message);
+                return null;
+            }
+
+        }
+        public static async Task<List<ProductTable>> GetProductDetail()
+        {
+            try
+            {
+                return await DatabaseConnection.GetDBConnection().Table<ProductTable>().ToListAsync();
             }
             catch (Exception ex)
             {

@@ -2,11 +2,95 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="C7_Exercises.View.Exercise6.Exercise6"
-             Title="Exercise6">
-    <StackLayout>
+             Title="Shopify"
+             xmlns:viewModel="clr-namespace:C7_Exercises.ViewModel">
+    <ContentPage.BindingContext>
+        <viewModel:GetProductViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <DataTemplate x:Key="productItemList">
+            <Border Stroke="Gray"
+                    BackgroundColor="White"
+                    StrokeShape="RoundRectangle 20">
+            <StackLayout Spacing="5">
+                
+                    <Image x:Name="imageFood"
+                           Source="{Binding Thumbnail}"
+                           HorizontalOptions="Center"
+                           Aspect="AspectFit"
+                           HeightRequest="150"/>
+                
+                <Label x:Name="labelBrand"
+                           Text="{Binding Brand ,StringFormat='{}Brand:{0: 0}'}"
+                           HorizontalOptions="FillAndExpand"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontSize="14"
+                           VerticalOptions="FillAndExpand"
+                           Padding="10,0,10,0"/>
+                <Label x:Name="labelProductTitle"
+                           Text="{Binding Title}"
+                           HorizontalOptions="FillAndExpand"
+                           TextColor="Black"
+                       FontAttributes="Bold"
+                           FontSize="14"
+                       Padding="10,0,10,0"/>
+                <StackLayout Orientation="Horizontal"
+                             Padding="10,0,10,10">
+                    <Label x:Name="labelPrice"
+                           Text="{Binding Price ,StringFormat='{}${0:0}'}"
+                           HorizontalOptions="FillAndExpand"
+                           TextColor="Green"
+                           FontAttributes="Bold"
+                           FontSize="14"
+                           VerticalOptions="FillAndExpand"/>
+                    <Label x:Name="labelStock"
+                           Text="{Binding Stock ,StringFormat='{}Instock:{0: 0}'}"
+                           HorizontalOptions="FillAndExpand"
+                           TextColor="Green"
+                           FontAttributes="Bold"
+                           FontSize="14"
+                           VerticalOptions="FillAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="10">
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            x:Name="labelName"
+            Text="Hello John"
+            FontAttributes="Bold"
+            FontSize="16"
+            TextColor="Black"
+            HorizontalOptions="FillAndExpand"/>
+        <Label x:Name="labelBuyingQuestion"
+               Text="What are you buying today?"
+               TextColor="Gray"
+               HorizontalOptions="FillAndExpand"
+               FontAttributes="Bold"
+               FontSize="14"
+               Margin="0,5,0,0"/>
+        <Grid VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand">
+            <CollectionView x:Name="collectionViewShopify"
+                            Margin="0,10,0,0"
+                            ItemsSource="{Binding ProductList}"
+                            ItemTemplate="{StaticResource productItemList}"
+                            IsVisible="{Binding IsCollectionVisible}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2"
+                                 VerticalItemSpacing="10"
+                                 HorizontalItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+            <ActivityIndicator x:Name="activityIndicator"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}"/>
+        </Grid>
     </StackLayout>
 </ContentPage>
